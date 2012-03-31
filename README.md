@@ -11,3 +11,25 @@ I'm ready to revive this :)
 You'll have a room at [sitename.com]/yourroomhere.
 + Create a post-it and type in whatever you want or use a <strong>short code</strong> like "img:troll" or "->" to post one of our predefined images.
 + You can also post youtube videos by just pasting in the url.
+
+**Shortcodes**
+
+Try posting one of these to get a predefined image:
+
++ ->
++ <-
++ img:troll
++ img:pokerface
++ img:leanback
++ img:foreveralone
++ img:ruserious
++ img:closeenough
++ img:yuno
++ img:okay
++ img:allthethings
++ img:dontevencare
++ img:jackiechan
++ arrow:right
++ arrow:left'
++ |^
++ |v
