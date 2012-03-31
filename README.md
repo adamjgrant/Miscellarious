@@ -1,6 +1,8 @@
 Long before there was Pinterest, I had created this fun little app to write things on post it notes or post memes with little image codes.
 I got very close to finishing this all on my local machine when it was stolen. I only had what I had uploaded to my server a month before.
 
+See a demo at <a href="stammp.com">stammp.com</a> (although in the future I will host this at miscellarious.com)
+
 I'm ready to revive this :)
 
 **How Miscellarious Works**
