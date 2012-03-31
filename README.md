@@ -30,6 +30,6 @@ Try posting one of these to get a predefined image:
 + img:dontevencare
 + img:jackiechan
 + arrow:right
-+ arrow:left'
++ arrow:left
 + |^
 + |v
