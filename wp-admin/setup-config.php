@@ -50,7 +50,7 @@ require_once(ABSPATH . WPINC . '/functions.php');
 require_once(ABSPATH . WPINC . '/class-wp-error.php');
 
 if (!file_exists(ABSPATH . 'wp-config-sample.php'))
-	wp_die('Sorry, I need a wp-config-sample.php file to work from. Please re-upload this file from your WordPress installation.');
+	wp_die('Sorry, I need a wp-config-sample.php file to work from. Please re-upload this file from your Miscellarious WordPress installation.');
 
 $configFile = file(ABSPATH . 'wp-config-sample.php');
 
@@ -60,7 +60,7 @@ if (file_exists(ABSPATH . 'wp-config.php'))
 
 // Check if wp-config.php exists above the root directory but is not part of another install
 if (file_exists(ABSPATH . '../wp-config.php') && ! file_exists(ABSPATH . '../wp-settings.php'))
-	wp_die("<p>The file 'wp-config.php' already exists one level above your WordPress installation. If you need to reset any of the configuration items in this file, please delete it first. You may try <a href='install.php'>installing now</a>.</p>");
+	wp_die("<p>The file 'wp-config.php' already exists one level above your Miscellarious WordPress installation. If you need to reset any of the configuration items in this file, please delete it first. You may try <a href='install.php'>installing now</a>.</p>");
 
 if (isset($_GET['step']))
 	$step = $_GET['step'];
@@ -82,12 +82,12 @@ function display_header() {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>WordPress &rsaquo; Setup Configuration File</title>
+<title>Miscellarious &rsaquo; Setup Configuration File</title>
 <link rel="stylesheet" href="css/install.css" type="text/css" />
 
 </head>
 <body>
-<h1 id="logo"><img alt="WordPress" src="images/wordpress-logo.png" /></h1>
+<h1 id="logo"><!--img alt="WordPress" src="images/wordpress-logo.png" /-->Miscellarious</h1>
 <?php
 }//end function display_header();
 
@@ -96,13 +96,13 @@ switch($step) {
 		display_header();
 ?>
 
-<p>Welcome to WordPress. Before getting started, we need some information on the database. You will need to know the following items before proceeding.</p>
+<p>Welcome to Miscellarious. Before getting started, we need some information on the database. You will need to know the following items before proceeding.</p>
 <ol>
 	<li>Database name</li>
 	<li>Database username</li>
 	<li>Database password</li>
 	<li>Database host</li>
-	<li>Table prefix (if you want to run more than one WordPress in a single database) </li>
+	<li>Table prefix (if you want to run more than one Miscellarious in a single database) </li>
 </ol>
 <p><strong>If for any reason this automatic file creation doesn't work, don't worry. All this does is fill in the database information to a configuration file. You may also simply open <code>wp-config-sample.php</code> in a text editor, fill in your information, and save it as <code>wp-config.php</code>. </strong></p>
 <p>In all likelihood, these items were supplied to you by your Web Host. If you do not have this information, then you will need to contact them before you can continue. If you&#8217;re all ready&hellip;</p>
@@ -119,7 +119,7 @@ switch($step) {
 	<table class="form-table">
 		<tr>
 			<th scope="row"><label for="dbname">Database Name</label></th>
-			<td><input name="dbname" id="dbname" type="text" size="25" value="wordpress" /></td>
+			<td><input name="dbname" id="dbname" type="text" size="25" value="miscellarious" /></td>
 			<td>The name of the database you want to run WP in. </td>
 		</tr>
 		<tr>
@@ -140,7 +140,7 @@ switch($step) {
 		<tr>
 			<th scope="row"><label for="prefix">Table Prefix</label></th>
 			<td><input name="prefix" id="prefix" type="text" value="wp_" size="25" /></td>
-			<td>If you want to run multiple WordPress installations in a single database, change this.</td>
+			<td>If you want to run multiple Miscellarious installations in a single database, change this.</td>
 		</tr>
 	</table>
 	<?php if ( isset( $_GET['noapi'] ) ) { ?><input name="noapi" type="hidden" value="true" /><?php } ?>
@@ -263,7 +263,7 @@ switch($step) {
 		chmod(ABSPATH . 'wp-config.php', 0666);
 		display_header();
 ?>
-<p>All right sparky! You've made it through this part of the installation. WordPress can now communicate with your database. If you are ready, time now to&hellip;</p>
+<p>All right sparky! You've made it through this part of the installation. Miscellarious can now communicate with your database. If you are ready, time now to&hellip;</p>
 
 <p class="step"><a href="install.php" class="button">Run the install</a></p>
 <?php

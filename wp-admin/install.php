@@ -1,6 +1,6 @@
 <?php
 /**
- * WordPress Installer
+ * Miscellarious Installer
  *
  * @package WordPress
  * @subpackage Administration
@@ -57,11 +57,12 @@ function display_header() {
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><?php _e( 'WordPress &rsaquo; Installation' ); ?></title>
+	<title><?php _e( 'Miscellarious &rsaquo; Installation' ); ?></title>
 	<?php wp_admin_css( 'install', true ); ?>
 </head>
 <body<?php if ( is_rtl() ) echo ' class="rtl"'; ?>>
-<h1 id="logo"><img alt="WordPress" src="images/wordpress-logo.png" /></h1>
+<!-- Put the miscellarious logo here once you get one. -->
+<h1 id="logo"><!--img alt="WordPress" src="images/wordpress-logo.png" /--></h1>
 
 <?php
 } // end display_header()
@@ -134,7 +135,7 @@ function display_setup_form( $error = null ) {
 			<td colspan="2"><label><input type="checkbox" name="blog_public" value="1" <?php checked( $blog_public ); ?> /> <?php _e( 'Allow my site to appear in search engines like Google and Technorati.' ); ?></label></td>
 		</tr>
 	</table>
-	<p class="step"><input type="submit" name="Submit" value="<?php esc_attr_e( 'Install WordPress' ); ?>" class="button" /></p>
+	<p class="step"><input type="submit" name="Submit" value="<?php esc_attr_e( 'Install Miscellarious' ); ?>" class="button" /></p>
 </form>
 <?php
 } // end display_setup_form()
@@ -142,7 +143,7 @@ function display_setup_form( $error = null ) {
 // Let's check to make sure WP isn't already installed.
 if ( is_blog_installed() ) {
 	display_header();
-	die( '<h1>' . __( 'Already Installed' ) . '</h1><p>' . __( 'You appear to have already installed WordPress. To reinstall please clear your old database tables first.' ) . '</p><p class="step"><a href="../wp-login.php" class="button">' . __('Log In') . '</a></p></body></html>' );
+	die( '<h1>' . __( 'Already Installed' ) . '</h1><p>' . __( 'You appear to have already installed Miscellarious. To reinstall please clear your old database tables first.' ) . '</p><p class="step"><a href="../wp-login.php" class="button">' . __('Log In') . '</a></p></body></html>' );
 }
 
 $php_version    = phpversion();
@@ -151,11 +152,11 @@ $php_compat     = version_compare( $php_version, $required_php_version, '>=' );
 $mysql_compat   = version_compare( $mysql_version, $required_mysql_version, '>=' ) || file_exists( WP_CONTENT_DIR . '/db.php' );
 
 if ( !$mysql_compat && !$php_compat )
-	$compat = sprintf( __('You cannot install because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires PHP version %2$s or higher and MySQL version %3$s or higher. You are running PHP version %4$s and MySQL version %5$s.'), $wp_version, $required_php_version, $required_mysql_version, $php_version, $mysql_version );
+	$compat = sprintf( __('You cannot install because Miscellarious (<a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a>) requires PHP version %2$s or higher and MySQL version %3$s or higher. You are running PHP version %4$s and MySQL version %5$s.'), $wp_version, $required_php_version, $required_mysql_version, $php_version, $mysql_version );
 elseif ( !$php_compat )
-	$compat = sprintf( __('You cannot install because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires PHP version %2$s or higher. You are running version %3$s.'), $wp_version, $required_php_version, $php_version );
+	$compat = sprintf( __('You cannot install because Miscellarious (<a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a>) requires PHP version %2$s or higher. You are running version %3$s.'), $wp_version, $required_php_version, $php_version );
 elseif ( !$mysql_compat )
-	$compat = sprintf( __('You cannot install because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires MySQL version %2$s or higher. You are running version %3$s.'), $wp_version, $required_mysql_version, $mysql_version );
+	$compat = sprintf( __('You cannot install because Miscellarious (<a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a>) requires MySQL version %2$s or higher. You are running version %3$s.'), $wp_version, $required_mysql_version, $mysql_version );
 
 if ( !$mysql_compat || !$php_compat ) {
 	display_header();
@@ -168,7 +169,7 @@ switch($step) {
 	  display_header();
 ?>
 <h1><?php _e( 'Welcome' ); ?></h1>
-<p><?php printf( __( 'Welcome to the famous five minute WordPress installation process! You may want to browse the <a href="%s">ReadMe documentation</a> at your leisure. Otherwise, just fill in the information below and you&#8217;ll be on your way to using the most extendable and powerful personal publishing platform in the world.' ), '../readme.html' ); ?></p>
+<p><?php printf( __( 'Welcome to the five minute Miscellarious WordPress installation process! You may want to browse the <a href="%s">ReadMe documentation</a> at your leisure. Otherwise, just fill in the information below and you&#8217;ll be on your way to using the most extendable and powerful personal publishing platform in the world.' ), '../readme.html' ); ?></p>
 
 <h1><?php _e( 'Information needed' ); ?></h1>
 <p><?php _e( 'Please provide the following information. Don&#8217;t worry, you can always change these settings later.' ); ?></p>
@@ -219,7 +220,7 @@ switch($step) {
 
 <h1><?php _e( 'Success!' ); ?></h1>
 
-<p><?php _e( 'WordPress has been installed. Were you expecting more steps? Sorry to disappoint.' ); ?></p>
+<p><?php _e( 'Miscellarious has been installed. Were you expecting more steps? Sorry to disappoint.' ); ?></p>
 
 <table class="form-table install-success">
 	<tr>
