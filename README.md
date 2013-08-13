@@ -1,8 +1,6 @@
 Long before there was Pinterest, I had created this fun little app to write things on post it notes or post memes with little image codes.
 I got very close to finishing this all on my local machine when the machine itself was stolen. I only had what I had uploaded to my server a month before.
 
-I'm ready to revive this :)
-
 **How Miscellarious Works**
 
 + Either go to any room by clicking on the category at the bottom of a post-it or create a room with the "New" stack. 
