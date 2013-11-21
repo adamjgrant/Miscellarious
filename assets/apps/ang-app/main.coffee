@@ -6,6 +6,7 @@ define [
 	'angularFire'
 	'angular-route'
 	'ng-progress'
+	'ng-sanitize'
 	'./resources/ng-progress.css!'
 ], (angular) ->
 	angular.module('app', [
@@ -15,6 +16,7 @@ define [
 		'firebase'
 		'ngRoute'
 		'ngProgress'
+		'ngSanitize'
 	]).config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 		$routeProvider.when '/first-steps', 
 			templateUrl: '/partials/first-steps.html'

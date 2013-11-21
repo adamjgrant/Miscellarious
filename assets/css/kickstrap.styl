@@ -7,36 +7,31 @@
 		height: 130px
 		background-position: -390px -226px
 		cursor: pointer
+		margin: 0px auto;
 		&:hover
 			background-position: -390px -408px
 	&-note
 		width: 175px
 		height: 175px
 		background-position: 0px 0px
-		position: absolute !important
-		.movebar
-			height: 30px
-			width: 175px
-			// background-color: red
-			background-color: transparent
-		input.transparent
-			opacity: 0
-			pointer-events: none
-			margin-top: -900px
-		textarea
+		margin: 0px auto;
+		&-content
 			background-color: transparent
 			border: 0px
-			width: 140px
-			margin: 0px auto
-			display: block
+			width: 130px
 			height: 130px
-			&.textarea-focused
-				background-color: white
-				&:hover
-					background-color: white
+			margin: 7px auto
+			display: block
 			&:hover
 				background-color: rgba(0, 0, 0, 0.05)
+		&-formattedContent
+			display: block
+			padding: 5px 25px
+			height: 165px
 
+.list_monospace
+	font-family: monospace
+	
 [draggable]
 	-moz-user-select: none
 	-khtml-user-select: none

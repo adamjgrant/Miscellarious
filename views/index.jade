@@ -9,25 +9,53 @@ block content
 		img(src="/img/isobook.png")
 		h4 Loading...
 	.container.ks-afterload
-		.row
-			.col.col-sm-12#notes(ng-controller='NotesCtrl', ng-init="init()", style="position: static;overflow: hidden")
+		.row(ng-controller="TestsCtrl")
+			.col.col-sm6
+				h1 Test
+				div(ng-repeat="test in tests") test
+					textarea(ng-model="test.name")
+		.row(ng-controller='NotesCtrl')
+			.col.col-sm-6#notes(ng-init="init()", style="position: static;overflow: hidden")
+				h4.text-center Room: {{roomSlug}}
 				.uikit.uikit-book(ng-click="create()")
 				.uikit.uikit-note(
-					ng-repeat="note in notes"
-					ng-style="{left: note.posx + 'px', top: note.posy + 'px'}"
-					ng-mouseup="setPos(note)"
-
+					ng-repeat="note in (notes | orderBy: 'timestamp':true)"
 				)
-					.movebar(
-						ng-mouseup="setPos(note)"
-					)
-					input.transparent(
-						ng-model="note.text"
-						ng-change="setSelectedNote(note)" 
+					textarea.uikit-note-content(
 						focus="{{note.id == selectedNote.id}}"
-					)
-					textarea(
 						ng-model="note.text"
 						ng-click="setSelectedNote(note)"
-						class="{{ note.id == selectedNote.id ? 'textarea-focused' : '' }}"
+						ng-blur="setSelectedNote(null)"
+						ng-show="note.id == selectedNote.id"
 					)
+					.uikit-note-formattedContent(
+						ng-hide="note.id == selectedNote.id"
+						ng-click="setSelectedNote(note)"
+					) 
+						span(ng-bind-html="format(note.text)")
+			.col.col-sm-6
+				h4 
+					a(ng-click="toggleInstructions()" href="") Tips and Tricks 
+						span.glyphicon.glyphicon-chevron-down(ng-hide="instructions")
+						span.glyphicon.glyphicon-chevron-up(ng-show="instructions")
+				div(ng-show="instructions", ng-init="instructions=false")
+					.page-header
+						h5 How to 
+					p To create a note, click the book.
+					p Click/Tap to type note.
+					p You can't delete and anyone can edit anything. Have fun and use shortcodes.
+					.page-header
+						h5 Shortcodes
+					p Type the following to generate different content
+					ul.list-unstyled.list_monospace
+						li img:troll
+						li img:pokerface
+						li img:leanback
+						li img:foreveralone
+						li img:ruserious
+						li img:closeenough
+						li img:yuno
+						li img:okay
+						li img:allthethings
+						li img:dontevencare
+						li img:jackiechan
