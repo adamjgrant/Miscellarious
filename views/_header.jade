@@ -1,0 +1,22 @@
+nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
+	.container
+		.navbar-header
+			button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse")
+				span.sr-only Toggle Navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a.navbar-brand.kickstrap-logo(href="/") #{title}
+		.navbar-collapse.collapse.navbar-ex1-collapse
+			ul.nav.navbar-nav
+				each menuItem in [{title:'Home', url: '/', slug:'home'}, {title: 'Products', url: '/products.html', slug: 'products'}, {title: 'New Page', url: '/newpage.html', slug: 'newpage'}]
+					li(class=(active === menuItem.slug ? 'active' : ''))
+						a(href=menuItem.url) #{menuItem.title}
+			form.navbar-form.navbar-right
+				input.form-control(type="search", placeholder="Search")			
+			ul.navbar-right.nav.navbar-nav
+				each menuItem in [{url: '/cart.html', slug:'cart', icon: 'glyphicon-shopping-cart', badge: '3'}, {url: '/messages.html', slug: 'messages', icon: 'glyphicon-envelope', badge: '10'}]
+					li(class=(active === menuItem.slug ? 'active' : ''))
+						a(href=menuItem.url) 
+							span.glyphicon(class=menuItem.icon) &nbsp;
+							span.badge #{menuItem.badge}

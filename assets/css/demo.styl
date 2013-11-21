@@ -1,0 +1,21 @@
+$blue = #5182A3
+$grey = #A1A1A1
+$white = #F5F5F5
+$grey-light = lighten($grey, 10%)
+
+blueOnLightGrey() {
+	color: $blue
+	background-color: $grey-light
+	font-style: italic
+}
+
+body
+	font-size: 2
+	blueOnLightGrey()
+
+	a
+		blueOnLightGrey()
+		&:hover
+			color: red
+		span.important
+			text-decoration: underline

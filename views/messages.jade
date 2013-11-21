@@ -1,0 +1,64 @@
+extends layout
+
+block variables
+	- var active = 'messages'
+
+block content
+	include _header
+
+	.container
+		section.row(ng-controller='MessagesCtrl')
+			link(
+				ng-repeat='contact in contacts'
+				rel="prerender", 
+				href="http://api.rethumb.com/v1/square/120/http://upload.wikimedia.org/wikipedia/commons/{{contact.img}}"
+			)
+			div.col.col-sm-12.col-md-3
+				h1 Messages
+				p.lead
+					a(href="#", onclick="$.growl({title: 'Not yet implemented.', delay: 3000})") New
+				article.panel.panel-default
+					.panel-heading 
+						input.form-control(type='text', ng-model='threadInput', placeholder='Search Threads')
+					.list-group.ks-beforeload
+						p.list-group-item Loading...
+					.list-group.ks-afterload
+						a.list-group-item(
+							ng-repeat='thread in allThreads | filter: threadInput'
+							ng-click='setSelectedThread(thread)'
+							href="#message"
+							ng-class="{'active': selectedThread.threadId == thread.threadId }"
+						) 
+							.media
+								img.media-object.pull-left(src="http://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/{{contactForId(thread.messages[0].contactId).img}}&h=128&w=128&t=square", style="width: 64px;")
+								.media-body
+									h4.media-heading {{thread.subject}}
+									p.text-muted(style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;") {{thread.messages[0].text}}
+			div#message(style="padding-top: 50px;")
+				nav.navbar.navbar-default.visible-sm.visible-xs
+					.container
+						ul.nav.navbar-nav	
+							li
+								a(href="#") 
+									span.glyphicon.glyphicon-chevron-left 
+									|  Messages
+			div.col.col-sm-12.col-md-9.ks-afterload
+				p.text-muted(ng-hide="allThreads.length > 0")
+					em No messages to display
+				.text-muted(ng-hide="selectedThread || allThreads.length == 0")
+					em.hidden-xs.hidden-sm Please select a thread from the left
+					em.visible-xs.visible-sm Please select a thread from above
+					.center-block#ads
+				h1 {{selectedThread.subject}}
+				br
+				div(ng-repeat='message in selectedThread.messages')
+					.media
+						img.media-object.pull-left(src="http://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/{{contactForId(message.contactId).img}}&h=64&w=64&t=square", style="width: 32px;")
+						.media-body
+							p.lead.pull-left {{contactForId(message.contactId).fName}} {{contactForId(message.contactId).lName}}
+							p.pull-right
+								small
+									em.text-muted Sent at {{message.date}}
+							.clearfix
+							p {{message.text}}
+					hr

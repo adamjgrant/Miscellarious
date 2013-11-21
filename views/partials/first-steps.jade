@@ -1,0 +1,80 @@
+h1 First Steps
+p If you're looking at this page from your local installation, you've successfully got Kickstrap up and running with the example pages. You should skip to Editing content.
+	|  otherwise, continue reading.
+
+h2 Download Kickstrap
+p (Alpha: Not yet implemented)
+p To download Kickstrap, you'll 
+	a(href="https://npmjs.org/") need Node Package Manager. 
+	| . If you already have this installed, run
+p
+	pre sudo npm install -g kickstrap
+
+h2 Create a new Kickstrap site
+ol
+	li Navigate to the directory where you'd like to create a new Kickstrap site and run
+		pre kickstrap new . (Alpha: not yet implemented)
+	li If you want to make the site in a directory at the current location, let's say it's called "mysite" replace the "." with "mysite"
+	li
+		pre kickstrap new mysite
+	li Whichever the case, make sure you are now in the site's directory.
+	li To run the example content created, run 
+	li
+		pre kickstrap watch
+		p (Alpha: use roots watch)
+		p This is actually running the command 
+			code roots watch
+			|  and we've remapped to this from the 
+			code kickstrap
+			|  command for ease-of-use. That being said, all 
+			code roots
+			|  commands will work here as well.
+	li If everything worked correctly, you should now see our Kickstrap example page. If not, or something isn't right, file or look for an issue at 
+		a(href="https://github.com/ajkochanowicz/Kickstrap") the Kickstrap GitHub page.
+p 
+	a(href="#/roots") Continue reading: Compiling in Roots
+	|  to learn how best to compile, watch, and prepare for a production website.
+
+h2 Editing content
+p Also see:
+ul
+	li 
+		a(href="#/pages") Creating pages
+p In Roots, your pages are generated with the files in views/. 
+p layout.jade and blank.jade are base files. By default, files will extend (add themselves to) blank.jade. This is the case for partials and layout.jade, each of which we'll explain next.
+p The pages in the example app extend layout.jade, which provides the repetitive header and footer content you'll use application-wide. In the case of this page, partials are used inside index.jade via angular. This allows a single page to refresh with content for only a small part of the page. By loading only the partial, all the head content and JavaScript dependencies do not need to be set up again.
+p Kickstrap uses both Angular partials and Jade partials. Angular partials load in real time, on request in the browser. They can be found in views/partials/.
+p Jade partials are compiled once in the project and added to the final .html files. These are found in views/ and should start with an underscore. (e.g. "_footer.jade")
+
+h3 Change theme and basic settings
+p We've attempted to group as much of the runtime settings into settings.js in the js directory.
+p (Alpha: Subject to change)
+p
+	pre theme: 'kickstrap'
+p To change the theme, change the name to match a .css file in the themes directory. To use the default theme with bootstrap, just use "bootstrap".
+
+h3 Removing/Editing growl
+p You may have noticed a "growl" alert appears on the home page when you open Kickstrap. This is generated in index.jade towards the bottom.
+p
+	pre :coffeescript
+		|   k$.ready ->  
+		|     $.growl
+		|       title: 'Welcome to #{title}!'
+		|       text: 'Check out the documentation to get started.'
+		|       type: 'success'
+		|       delay: 3000
+p 
+	code k$.ready
+	|  is a JavaScript function that will execute anything below it once JSPM has finished running its components. As such, any code that is dependent on Kickstrap apps or angular will load once everything is ready and available. This can be included in multiple places on one page.
+p Growls are a jQuery extension available as an app called Tiny Growl. This app must be included in 
+	code k$.apps
+	|  to run correctly.  To remove the growl completely, simply delete 
+	code $.growl
+	|  and the indented code below it.
+p For more information on using growls, visit the 
+	a(href="https://github.com/ajkochanowicz/tinygrowl") GitHub documentation.
+
+h3 Editing the header
+p The header that provides the navigation bar is a Jade partial. This is automatically added to any view with the code:
+	pre include _header
+	| _header.jade can be found in views/.

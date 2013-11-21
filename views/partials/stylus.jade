@@ -1,0 +1,45 @@
+h1 Intro to Stylus
+p.lead Stylus is a serious time-saver for writing CSS
+p This will not be an exhaustive document covering Stylus but mainly covering conventions you'll see used in Kickstrap. For complete documentation, visit 
+	a(href="http://learnboost.github.io/stylus/") the Stylus homepage.
+p The beauty of Stylus is its ability to read plain CSS. You don't technically have to learn any new syntax to jump into Stylus. For example:
+p
+	pre a {
+		|   color: #428BCA;
+		| }
+		| a.active {
+		|   color: white;
+		|   background-color: #428BCA;
+		| }
+		| a.active span {
+		|   background-color: yellow;
+		| }
+p ...Is totally valid stylus. However, stylus lets us get rid of those curly braces and semicolons if we indicate nesting by tabbing in.
+p
+	pre a
+		|   color: #428BCA
+		| a.active
+		|   color: white
+		|   background-color: #428BCA
+		| a.active span
+		|   background-color: yellow
+p We can also nest on property under another like this:
+p
+	pre a
+		|   color: #428BCA
+		|   &.active
+		|     color: white
+		|     background-color: #428BCA
+		|     span
+		|       background-color: yellow
+p The ampersands (&) denote concatenation. The absence of an ampersand will put a space between identifiers. 
+p We can also use variables in Stylus and get rid of that repetitive hex for blue.
+p
+	pre $blue = #428BCA
+		| a
+		|   color: $blue
+		|   &.active
+		|     color: white
+		|     background-color: $blue
+		|     span
+		|       background-color: yellow

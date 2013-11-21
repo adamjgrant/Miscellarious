@@ -1,0 +1,14 @@
+<style>
+.kickstrap-20 { width: 320px; height: 50px; }
+@media(min-width: 500px) { .kickstrap-20 { width: 468px; height: 60px; } }
+@media(min-width: 800px) { .kickstrap-20 { width: 728px; height: 90px; } }
+</style>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Kickstrap 2.0 -->
+<ins class="adsbygoogle kickstrap-20"
+     style="display:inline-block"
+     data-ad-client="ca-pub-6161024560433921"
+     data-ad-slot="8428018367"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>

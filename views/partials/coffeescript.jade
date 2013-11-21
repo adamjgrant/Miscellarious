@@ -1,0 +1,97 @@
+h1 Intro to CoffeeScript
+p.lead Coffeescript makes writing JavaScript much easier and more secure.
+p This will not be an exhaustive document covering CoffeeScript but mainly covering conventions you'll see used in Kickstrap. For complete documentation, visit 
+	a(href="http://coffeescript.org") the CoffeeScript homepage.
+	|  You'll also find a link for "Try CoffeeScript" where you can translate your CoffeeScript to JavaScript in real time.
+h3 The importance of tabbing.
+p CoffeeScript makes writing JavaScript much easier by removing characters like commas, semicolons, and curly braces in certain contexts. This is accomplished by instead indenting lines with either spaces or tabs. For example:
+p
+	pre if a
+		|   return b
+p In JavaScript, this would return as
+p
+	pre if(a) { return b; }
+p This could also be written as
+p
+	pre b if a
+p Tabbing is especially important in functions. Here's what a function looks like in CoffeeScript
+p
+	pre addNumbers = (a, b) -> a + b
+p Here is that same code in JavaScript
+	pre var addNumbers = function(a, b) { return a + b; }
+p Because the function returned one line, we did not need to tab anything. However, with more than one line, we would need to tab in. For example,
+p
+	pre calcNumbers = (a, b) ->
+		|   c = a + b
+		|   c/2
+p ...is the same as
+p
+	pre var calcNumbers = function(a, b) { 
+		|   var c = a + b; 
+		|   return c/2;
+		| }
+h3 More about functions
+p Failure to tab appropriately can put a variable out of scope. This function:
+p
+	pre sayHi = () ->
+		|   alert 'hi'
+		|   color = 'yellow'
+		| alert color
+p Would alert "hi" and "undefined" because 
+	code color
+	|  is assigned in 
+	code sayHi()
+	|  where the second alert can't reach it. This would be the correct way to write the above:
+	pre sayHi = () ->
+		|   alert 'hi'
+		| color = 'yellow'
+		| alert color	
+p Sometimes your function's parameters will be empty
+p
+	pre $('a').click(function() {
+		|   return alert('you clicked');
+		| });
+p If so, we don't actually need the 
+	code ()
+	|. We can drop it and just use the arrow. Here's the coffeescript version:
+p
+	pre $('a').click -> alert 'you clicked'
+p Notice we also removed the parentheses from 
+	code alert
+	|. By default, Coffeescript will encapsulate variables delineated by spaces. For example:
+p
+	pre a b c
+p ...in JavaScript would be
+p
+	pre a(b(c))
+p We can't do this if we need to "work on" one of those encapsulations with a period. That's why we used 
+	code $('a')
+	|  and not 
+	code $ 'a'
+h3 Comma-separated values
+p In Kickstrap, you may see something like this from time to time:
+p 
+	pre define ['jquery'], ($) -> $.fn.jquery
+p Now you know the space implies an encapsulation (except for certain reserved characters like
+	code return
+	| ), but what if we wanted to add more to the array?
+p
+	pre define [
+		|   'jquery'
+		|   'angular'
+		| ], ($, angular) -> $.fn.jquery
+p CoffeeScript knows the new lines imply comma-separated values. Ultimately, this yields the following:
+p
+	pre define(['jquery', 'angular'], function($, angular) {
+		|   return $.fn.jquery;
+		| });
+h3 Use CoffeeScript in Jade
+p Via roots, you can use CoffeeScript in jade using 
+	code :coffeescript
+	| . For example: 
+p
+	pre :coffeescript
+		|   alert 'hi!'
+p ...becomes
+p
+	pre &lt;script type="text/javascript"&gt;alert('hi')&lt;/script&gt;

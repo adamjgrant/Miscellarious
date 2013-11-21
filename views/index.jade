@@ -1,0 +1,33 @@
+extends layout
+
+block variables
+	- var active = 'home'
+
+block content
+
+	.loading-book.ks-beforeload
+		img(src="/img/isobook.png")
+		h4 Loading...
+	.container.ks-afterload
+		.row
+			.col.col-sm-12#notes(ng-controller='NotesCtrl', ng-init="init()", style="position: static;overflow: hidden")
+				.uikit.uikit-book(ng-click="create()")
+				.uikit.uikit-note(
+					ng-repeat="note in notes"
+					ng-style="{left: note.posx + 'px', top: note.posy + 'px'}"
+					ng-mouseup="setPos(note)"
+
+				)
+					.movebar(
+						ng-mouseup="setPos(note)"
+					)
+					input.transparent(
+						ng-model="note.text"
+						ng-change="setSelectedNote(note)" 
+						focus="{{note.id == selectedNote.id}}"
+					)
+					textarea(
+						ng-model="note.text"
+						ng-click="setSelectedNote(note)"
+						class="{{ note.id == selectedNote.id ? 'textarea-focused' : '' }}"
+					)

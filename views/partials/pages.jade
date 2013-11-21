@@ -1,0 +1,18 @@
+h1 Creating Pages
+p To create a page, make a new .jade file in views/.
+p Pages that use the global layout.jade should have this at the top
+p
+	pre extends layout
+		| 
+		| block content
+p Obviously, the first line tells Jade this is extending layout.jade. 
+p If you open layout.jade, you'll see there is a 
+	code block content
+	|  defined there as well.
+p
+	pre extends layout
+		| 
+		| block content
+		|   h1 hello world
+p This above code is telling Jade it should put the indented code there when it extends layout. You can create other blocks in layout as well.
+p For partials, omit both the extends and block line completely. This will default to extending blank.jade. Because partials are used in pages already extended by layout, there's no need to write in the extra resources.

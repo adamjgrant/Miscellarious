@@ -1,0 +1,75 @@
+extends layout
+
+block variables
+	- var active = 'products'
+
+block content
+	include _header
+
+	.container(ng-controller='ProductsCtrl')
+		section.row
+			.col.col-sm-12
+				h1 On Sale Now
+				p.lead Get them before they're gone
+		section.row
+			div.col.col-sm-3
+				article.panel.panel-default
+					.panel-heading 
+						input.form-control(type='text', ng-model='productInput', placeholder='Search products')
+					.list-group.ks-beforeload
+						p.list-group-item Loading...
+					.list-group.ks-afterload
+						a.list-group-item(
+							ng-href='{{"#"}}{{slug(product.name)}}', ng-repeat='product in products | filter: productInput'
+							ng-click="setSelectedProduct(product)"
+							ng-class="{'active': selectedProduct.id == product.id }"
+						) {{product.name}}
+
+			div.col.col-sm-9.ks-afterload
+				.carousel.slide#featured(data-ride="carousel")
+					ol.carousel-indicators
+						li.active(data-target="#featured", data-slide-to="0")
+						li(data-target="#featured", data-slide-to="{{$index+1}}", ng-repeat="featuredProduct in featuredProducts")
+					.carousel-inner
+						.item.active(style="max-height: 450px")
+							img(src="http://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/c/cc/Le_garcon_et_la_ville.JPG&w=1000&t=fitup")
+							.carousel-caption
+								h3 Check out our summer deals
+						.item(ng-repeat="featuredProduct in featuredProducts", style="max-height: 450px")
+							img(src="http://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/{{featuredProduct.img}}&w=1000&t=fitup")
+							.carousel-caption
+								h3 
+									{{featuredProduct.name}}
+								p {{featuredProduct.desc}}
+								p 
+									a.btn.btn-default(href="cart.html") 
+										span.glyphicon.glyphicon-shopping-cart
+										|  Add to cart
+					a.left.carousel-control(href="#featured", data-slide="prev")
+						span.glyphicon.glyphicon-chevron-left
+					a.right.carousel-control(href="#featured", data-slide="next")
+						span.glyphicon.glyphicon-chevron-right
+				br
+				.row
+					.col.col-sm-4(ng-repeat='product in products | filter: productInput | limitTo: 3')
+						img.img-circle.center-block(src="http://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/{{product.img}}&h=400&w=400&t=square" style="width: 200px")
+						h4.center-block(ng-id='slug(product.name)') {{product.name}}
+						p {{product.desc}}
+
+				hr
+				.center-block#ads
+				hr
+				include _pagination
+				hr
+
+				.row
+					.col.col-md-4.col-sm-6(ng-repeat='product in products | startFrom:startFrom() | limitTo:pageSize', style="min-height: 250px")
+						.media
+							img.media-object.pull-left(src="http://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/{{product.img}}&h=128&w=128&t=square", style="width: 64px;")
+							.media-body
+								h4.media-heading(ng-id='slug(product.name)') {{product.name}}
+								p {{product.desc}}
+						a.btn.btn-primary(href="cart.html") Add to cart
+
+				hr
+				include _pagination

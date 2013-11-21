@@ -1,0 +1,107 @@
+h1 Creating Apps
+p.lead Apps are local JavaScript and CSS files that run as asynchronous packages.
+
+p An app will have at least two to three parts:
+ol
+	li A directory under assets/apps/
+	li A main.coffee file
+	li Optional css or js resources main.js will run.
+
+h2 Hello World app
+p Let's create the most basic of apps. This will display a javascript message that says "Hello World".
+ol
+	li In apps, create a new directory called "helloworld"
+		ul
+			li
+				span.glyphicon.glyphicon-folder-open &nbsp;
+				| helloworld
+	li In helloworld/, add a blank file called main.coffee
+		ul
+			li
+				span.glyphicon.glyphicon-folder-open &nbsp;
+				| helloworld
+				ul
+					li
+						span.glyphicon.glyphicon-file &nbsp;
+						| main.coffee
+	li Add the following to main.coffee
+		pre alert 'hello world'
+	li In settings.coffee, add 
+		code 'ks:helloworld'
+		|  to your 
+		code k$.apps
+		|  array.
+		pre apps: [
+			|   'ks:sample-app'
+			|   'ks:tinygrowl'
+			|   'ks:ang-app'
+			|   'ks:helloworld'
+			| ]
+	li Now when you refresh your page, you should see the alert. Keep reading for more complex use cases.
+h2 Hello world with extra resources
+p This app will do the same as our first but will get the alert from another js file and load a css file.
+ol
+	li Create the app from above
+	li Erase main.coffee and add the following
+		pre define [
+			|  './helloworld'
+			|  './helloworld.css!'
+			| ], () ->
+		p Be sure you have the "!" after the .css
+		p We're telling JSPM to look for two resources, helloworld.js and helloworld.css. We don't have to write '.js' but you'll need to specify a css file is being loaded with the extension and an exclamation point.
+	li Create a blank helloworld.coffee in /apps/helloworld/ and write the following
+		pre alert 'hello world'
+	li Create a blank helloworld.styl in /apps/helloworld/ and write the following
+		pre body
+			|   background-color: orange !important
+		p This is a stylus file, which will be converted by roots to a .css file as we watch and compile. The 
+			code !important
+			|  suffix overrides any other declaration of background-color on the body. This won't be pretty, but it will be a useful test.
+	li Refresh the page. You should now see both the "hello world" alert and a yellow page. Keep reading, there's more we can do with apps.
+h2 Hello world with dependencies
+p Continuing with our hello world app from the previous two examples, this app will need to know jQuery is loaded before it tries to use $ functions.
+ol
+	li Create the app from above
+	li Edit main.coffee so it reads as such:
+		pre define [
+			|  'jquery'
+			|  './helloworld.css!'
+			| ], ($) ->
+			|   alert 'Hello world. Running jQuery version ' + $.fn.jquery
+	li Delete helloworld.coffee. We no longer need this.
+	li Refresh. You should now see what we had before, but with the jQuery version in the message. This proves the app is waiting for jQuery to be loaded before executing any script.
+h2 Hello world with a chain of dependencies
+p In more realistic scenario, we may be writing code that relies on a library which relies on jQuery. JSPM's Require.js syntax provides a very clean, DRY way to handle this.
+p Let's say I want to use garlic.js. This caches all your form values in the user's browser in case they accidentally navigate away.
+ol
+	li Add the directory "garlic" to /apps
+		ul
+			li
+				span.glyphicon.glyphicon-folder-open &nbsp;
+				| garlic
+	li Create a blank "main.coffee"
+		ul
+			li
+				span.glyphicon.glyphicon-folder-open &nbsp;
+				| garlic
+				ul
+					li
+						span.glyphicon.glyphicon-file &nbsp;
+						| main.coffee
+	li Add the following to main.coffee
+		pre define ['garlic'], () -> $('form').garlic()
+		p Notice we didn't denote the local directory with 
+			code ./
+			| . This is because we're going to define it later in _jspm.coffee.
+	li Open _jspm.coffee (in the js/ directory)
+	li Add the following to 
+		code map:
+		pre 'garlic': 'cdnjs:garlic.js/1.2.2/garlic.min'
+		p This tells JSPM 
+			code garlic
+			|  means a CDN link to garlic on cdnjs.com. Because garlic.js is hosted on cdnjs.com, we can 
+			a(href="https://github.com/jspm/jspm-loader") use JSPM's shortcut syntax.
+	li Add the following to 
+		code shim:
+		pre 'ks:garlic': ['jquery@2.0']
+		p This will ensure garlic.js is only allowed to run if jquery has been loaded as well. By creating this requirement in _jspm.coffee, we also ensure this is a rule throughout the application.

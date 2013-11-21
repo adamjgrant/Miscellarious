@@ -1,0 +1,7 @@
+ul.pagination.center-block(style="display: table")
+	li(ks-visible="currentPage != 0")
+		a(href="", ng-click="deincrement()") &laquo;
+	li(ng-repeat="genericItem in genericItems | limitTo:numPages()", class="{{ currentPage == $index ? 'active': ''}}", ng-click="setCurrentPage($index)")
+		a(href="") {{$index+1}}
+	li(ks-visible="currentPage > (genericItems.length/pageSize - 1) == false")
+		a(href="", ng-click="increment()") &raquo;	

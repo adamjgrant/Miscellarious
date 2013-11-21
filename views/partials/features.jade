@@ -1,0 +1,138 @@
+iframe.img-responsive(src="//player.vimeo.com/video/79834881?color=ffffff" style="width: 1000px; height: 500px" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+.row
+	h1.text-center Bootstrap for Serious Web Applications
+	p.text-center
+		a.btn.btn-primary.btn-lg(href="http://j.mp/1aEORWX", style="margin-right: 5px") Get the Beta
+		a.btn.btn-default.btn-lg(href="", ng-click="nodemo()") Demo
+
+
+article
+	blockquote.twitter-tweet(lang="en")
+		p
+			a(href="http://t.co/8jhTM6rK") http://t.co/8jhTM6rK<
+			| its products like this that keep me stoked on being a nerd! 
+			a(href="http://t.co/3IGRhFal") http://t.co/3IGRhFal
+			| &mdash; freak pelican (@freakpelican) 
+			a(href="https://twitter.com/freakpelican/statuses/276237241431519232") 5 Décembre 2012
+
+article
+	.page-header
+		h1 Why You'll Love It
+	.col.col-md-6
+		p.lead Made with the best tech on Earth.
+		p Kickstrap seamlessly combines Bootstrap with top-tier web technologies. It's so advanced, it can run an authenticated, database-driven web app 
+			strong without a native backend.
+		p This is accomplished by the coupling of Google's Angular.js and Firebase.io, a websocket Backend as a Service (Baas). This is ready to go out-of-the-box, but optional to use.
+	.col.col-md-6
+		.col.col-md-6
+			img.img-responsive(src="./img/mashable.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/hn.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/dzone.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/t3n.png")
+		br
+		p
+			small As seen on these news websites
+	.clearfix
+
+article
+	.page-header
+		h1 The Most Trusted Fork of Bootstrap
+	.col.col-md-6
+		p.lead Modern, Scalable, Production Ready.
+		p In this second version, we've reworked Kickstrap from the ground up, empowering it with the best in pre-processing technologies (Jade, CoffeeScript, Stylus), package-dependency management (JSPM.io), and a fast, front-end MVC (Angular.js).
+	.col.col-md-6
+		.col.col-md-6
+			img.img-responsive(src="./img/vegankit.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/abergs.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/ipreo.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/peugeot.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/skuvault.png")
+		.col.col-md-6
+			img.img-responsive(src="./img/fwdslash.png")
+		br
+		p
+			small Trusted by these brands
+	.clearfix
+
+article
+	.page-header
+		h1 Included Themes
+	p.lead Activate themes on-the-fly
+	p Click on a theme to preview.
+	.col.col-sm-4(ng-repeat="theme in themes")
+		h4 {{theme.title}}
+		img.thumbnail(src="./img/{{theme.name}}.png", ng-click="setTheme(theme.name)")
+	.clearfix
+	p
+		em * Courtesy of Thomas Park and 
+			a(href="http://bootswatch.com/") Bootswatch.com
+
+article
+	.page-header
+		h1 Your Website has an App Store
+	.col.col-md-6
+		p.lead Keeping track of and staying up to date on your static resources (JS, CSS, fonts, images...) and their dependencies is painful.
+		p Kickstrap's partnership with JSPM.io provides a strong front-end package dependency manager built on Require.js.
+		p Kickstrap apps are unit JSPM bundles of static resources that can be run at any time in the web app's lifetime. 
+		p JSPM also allows for loading resources from npm, CDNJS, and GitHub via its CDN registry.
+	.col.col-md-6
+		#pong
+			.well(style="height: 300px") 
+				p
+					em Waiting for JSPM package
+		p Try it here:
+		p
+			pre &lt;script type='text/javascript'&gt;
+				|   jspm.import('ks:pong');
+				| &lt;/script&gt;
+		p
+			a.btn.btn-primary(ng-click="setPong()") Run Code
+
+article
+	.page-header
+		h1 Bootstrap 3
+	p.lead The most popular CSS framework, now extended.
+	p Bootstrap 3 is a mobile-first CSS and JS framework making UI creation a snap on any screen.
+	p
+		em
+			a(href="http://getbootstrap.com/") Bootstrap Homepage
+	
+article
+	.page-header
+		h1 JSPM
+	p.lead An app store for your website
+	p JSPM is a browser module loader that will load any module format (ES6 / AMD / CJS) locally or even directly from NPM and Github utilising SPDY push.
+	p
+		em
+			a(href="http://jspm.io/") JSPM Homepage
+
+article
+	.page-header
+		h1 Roots.cx
+	p.lead Powerful compilation, live testing, and deployment
+	p No more third-party less compilers or requirement to deploy your own server. Kickstrap is now a custom Roots template. This means it utilizes Roots" native CoffeeScript, Jade, and Stylus compilation, Heroku deployment, watch mode, plugins, and live reloading.
+	p
+		em
+			a(href="http://roots.cx/") Roots Homepage
+
+article
+	.page-header
+		h1 Angular.js
+	p.lead Google's front-end MVC for blindingly fast web apps
+	p HTML is great for declaring static documents, but it falters when we try to use it for declaring dynamic views in web-applications. AngularJS lets you extend HTML vocabulary for your application. The resulting environment is extraordinarily expressive, readable, and quick to develop....
+	p
+		em
+			a(href="http://angularjs.org/") Angular Homepage
+
+article
+	.page-header
+		h1 Included templates
+	p.lead Hack away at our included example pages
+	p In version 1 of Kickstrap, I realized users much prefered pre-built templates over blank slates. I"ve included several simple templates for common application page types--already wired up with Angular.js. Check them out in the navbar at the top.

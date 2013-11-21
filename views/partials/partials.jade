@@ -1,0 +1,92 @@
+h1 Creating Partials
+p There are two fundamentally different kind of partials in Kickstrap. 
+h2 Roots partials 
+p Roots partials are chunks of files that can be combined when Roots compiled. This is great for keeping parts of your page organized. Out-of-the-box, Kickstrap uses partials for JavaScript files _jspm.coffee, _badge.coffee, and _extend.coffee. These all combine into settings.coffee. Kickstrap also uses the _header.jade partial for most of the pages to generate the navbar. _pagination.jade is used twice in just one page. This allows us to show pagination twice on one page without having to duplicate any code.
+h3 Creating a Roots partial
+p To create a roots partial, simply create a .jade file prefixed with a _. For example,
+p
+	pre _avatar.jade
+p Now, just use 
+	code include
+	|  to load it into one of your jade files. Remember to drop the file extension.
+p
+	pre include _avatar
+p As it is written above, this assumes the partial is in the same directory as the file that calls 
+	code include
+	| . Otherwise, refer to its relative directory. If _avatar.jade is in views/myPartials and our profile page is in views/, we'd write this in profile.jade:
+p
+	pre include myPartials/_avatar
+
+h2 Angular partials
+p Angular partials are very different from Roots partials in that they are loaded into the current view in real time. You've seen this happen when you clicked the menu item to see this very page. The words you are reading right now are stored in a file called partials.jade in the views/partials directory. When you click on a menu item on the index page, instead of completely reloading the page, only the little bit of text content is updated.
+h3 Creating an Angular partial
+p Angular partials are also easy to create, but the full functionality and options for using them is complex. See 
+	a(href="http://docs.angularjs.org/api/ng.directive:ngInclude") ng-include 
+	| to use non-changeable partials. and 
+	a(href="http://docs.angularjs.org/api/ngRoute.directive:ngView") ng-view 
+	| for documentation on what we'll discuss below.
+p Using the structure existing in a fresh download of Kickstrap, here is the easiest way to create partials. First, define where the partial should load into by adding the attribute 
+	code ng-view
+	|  to an HTML element.
+p 
+	pre div(ng-view)
+p See an example of this in views/index.jade.
+p Now create your partial file in views/partials. Feel free to organize it however you wish. You may intend on having a lot of partials and will need to create directories to group them. In this example, we'll add an 
+	code ng-view
+	|  to products.jade. We'll put it right under the title "On sale now" so we have it right at the top of the page.
+p
+	pre h1 On Sale Now
+		| div(ng-view)
+		| p.lead Get them before they're gone
+p We'll create a partial called test.jade in views/partials/test.jade and enter the following:
+p
+	pre h3 hello world
+p Of course, we haven't yet created anything to tell Kickstrap that test.jade should load there and when it should do so. Open apps/ang-app/main.coffee. You should see something like this:
+p 
+	pre define [
+		|   'angular' 
+		|   './controllers/index'
+		|   './directives/index'
+		|   './filters/index'
+		|   'angularFire'
+		|   'angular-route'
+		|   'ng-progress'
+		|   './resources/ng-progress.css!'
+		| ], (angular) ->
+		|   angular.module('app', [
+		|     'app.controllers'
+		|     'app.directives'
+		|     'app.filters'
+		|     'firebase'
+		|     'ngRoute'
+		|     'ngProgress'
+		| ]).config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+		|   $routeProvider.when '/first-steps', 
+		|     templateUrl: '/partials/first-steps.html'
+		|   $routeProvider.when '/features', 
+		|     templateUrl: '/partials/features.html'
+		|   $routeProvider.when '/apps', 
+		|     templateUrl: '/partials/apps.html'
+		|   $routeProvider.when '/coffeescript', 
+		|     templateUrl: '/partials/coffeescript.html'
+		|   $routeProvider.when '/jade', 
+		|     templateUrl: '/partials/jade.html'
+		|   $routeProvider.when '/pages', 
+		|     templateUrl: '/partials/pages.html'
+		|   $routeProvider.when '/partials', 
+		|     templateUrl: '/partials/partials.html'
+		|   $routeProvider.when '/roots', 
+		|     templateUrl: '/partials/roots.html'
+		|   $routeProvider.when '/stylus', 
+		|     templateUrl: '/partials/stylus.html'
+		|   $routeProvider.when '/templates', 
+		|     templateUrl: '/partials/templates.html'
+		| ]
+p You can see the rules we've created for pages on the docs. These are the lines that say 
+	code $routeProvider...
+	|  Here's our rule for test.jade.
+p
+	pre $routeProvider.when '/test', 
+		|     templateUrl: '/partials/test.html'
+p We're specifying .html instead of .jade because Angular doesn't see any of our precompiled assets. Angular is activated once we end up with HTML, CSS, and JS, not Jade, Stylus, and CoffeeScript.
+p Now, just navigate to /products.html#/test. You should see "hello world" under "On Sale Now".
