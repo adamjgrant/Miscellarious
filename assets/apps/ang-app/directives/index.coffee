@@ -1,5 +1,3 @@
 define [
-	'./enter'
-	'./visible'
 	'./focus'
 ], () ->

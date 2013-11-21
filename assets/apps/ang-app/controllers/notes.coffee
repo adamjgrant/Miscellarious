@@ -33,9 +33,6 @@ define ['./module', 'jquery'], (controllers, $) ->
 		$scope.$on '$locationChangeSuccess', () ->
 			ngProgress.start()
 			$scope.roomSlug = ($location.path().substr(1,$location.path().length) || 'home')
-
-
-
 			if (typeof $scope.unbindNotes == 'function')
 				console.log 'Yes, it is a function'
 				$scope.unbindNotes()
@@ -51,7 +48,7 @@ define ['./module', 'jquery'], (controllers, $) ->
 				when 4 then col = 'orange'
 				when 5 then col = 'purple'
 				else col = 'yellow'
-			return 'uikit-note_' + col
+			'uikit-note_' + col
 
 		shortcodes = [
 			scode: 'img:troll'
@@ -86,15 +83,11 @@ define ['./module', 'jquery'], (controllers, $) ->
 		,
 			scode: 'img:dontevencare'
 			replacement: '<div class="img-stamp img-stamp_dontevencare"></div>'
-		,
-		
-
 		]
 		$scope.format = (text) ->
 			console.log text
 			text = text.replace sc.scode, sc.replacement for sc in shortcodes
 			text = $sce.trustAsHtml String text
-
 
 		$scope.setSelectedNote = (note) ->
 			$scope.selectedNote = note

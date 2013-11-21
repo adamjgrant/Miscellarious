@@ -17,8 +17,7 @@ jspm.config
 		'ng-progress':		'ks:ang-app/resources/ng-progress'
 		'fontawesome': 		'cdnjs:font-awesome/4.0.1/css/font-awesome.min.css!'
 	shim: 
-		'cdnjs:angular.js/1.2.0/angular':
-			exports: 'angular'
+		'cdnjs:angular.js/1.2.0/angular': exports: 'angular'
 		'ks:ang-app/resources/angular-route': ['angular@1.2.0/angular']
 		'ks:ang-app/resources/ng-progress': ['angular@1.2.0/angular']
 		'ks:ang-app/resources/ng-sanitize': ['angular@1.2.0/angular']

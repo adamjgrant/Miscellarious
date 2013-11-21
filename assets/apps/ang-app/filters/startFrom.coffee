@@ -4,5 +4,3 @@ define ['./module'], (filters) ->
 			start = +start #parse to int
 			input.slice start
 	]
-
-# Thanks http://j.mp/HUcrJj
