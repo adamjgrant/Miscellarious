@@ -9,11 +9,6 @@ block content
 		img(src="/img/isobook.png")
 		h4 Loading...
 	.container.ks-afterload
-		.row(ng-controller="TestsCtrl")
-			.col.col-sm6
-				h1 Test
-				div(ng-repeat="test in tests") test
-					textarea(ng-model="test.name")
 		.row(ng-controller='NotesCtrl')
 			.col.col-sm-6#notes(ng-init="init()", style="position: static;overflow: hidden")
 				h4.text-center Room: {{roomSlug}}

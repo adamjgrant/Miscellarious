@@ -41,10 +41,42 @@ define ['./module', 'jquery'], (controllers, $) ->
 
 		shortcodes = [
 			scode: 'img:troll'
-			replacement: '<img src="/img/troll.png">'
+			replacement: '<div class="img-stamp img-stamp_troll"></div>'
+		,
+			scode: 'img:pokerface'
+			replacement: '<div class="img-stamp img-stamp_pokerface"></div>'
+		,
+			scode: 'img:leanback'
+			replacement: '<div class="img-stamp img-stamp_leanback"></div>'
+		,
+			scode: 'img:foreveralone'
+			replacement: '<div class="img-stamp img-stamp_foreveralone"></div>'
+		,
+			scode: 'img:ruserious'
+			replacement: '<div class="img-stamp img-stamp_ruserious"></div>'
+		,
+			scode: 'img:closeenough'
+			replacement: '<div class="img-stamp img-stamp_closeenough"></div>'
+		,
+			scode: 'img:yuno'
+			replacement: '<div class="img-stamp img-stamp_yuno"></div>'
+		,
+			scode: 'img:okay'
+			replacement: '<div class="img-stamp img-stamp_okay"></div>'
+		,
+			scode: 'img:allthethings'
+			replacement: '<div class="img-stamp img-stamp_allthethings"></div>'
+		,
+			scode: 'img:jackiechan'
+			replacement: '<div class="img-stamp img-stamp_jackiechan"></div>'
+		,
+			scode: 'img:dontevencare'
+			replacement: '<div class="img-stamp img-stamp_dontevencare"></div>'
+		,
+		
+
 		]
 		$scope.format = (text) ->
-			return ''
 			console.log text
 			text = text.replace sc.scode, sc.replacement for sc in shortcodes
 			text = $sce.trustAsHtml text

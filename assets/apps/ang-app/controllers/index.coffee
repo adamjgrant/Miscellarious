@@ -1,4 +1,3 @@
 define [
 	'./notes'
-	'./test'
 ], () ->
