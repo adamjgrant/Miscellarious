@@ -40,10 +40,11 @@ define ['./module', 'jquery'], (controllers, $) ->
 			.draggable
 				handle: '.movebar'
 				drag: (e) ->
-					window.noteX = e.clientX
-					window.noteY = e.clientY
+					window.noteX = $(this).offset().left
+					window.noteY = $(this).offset().top
+				stack: '#notes'
 			.mousedown (e) ->
-				window.noteX = e.clientX
-				window.noteY = e.clientY
+				window.noteX = $(this).offset().left
+				window.noteY = $(this).offset().top
 				e.preventDefault()?
 				false
