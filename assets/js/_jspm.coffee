@@ -22,4 +22,3 @@ jspm.config
 		'ks:ang-app/resources/angular-route': ['angular@1.2.0/angular']
 		'ks:ang-app/resources/ng-progress': ['angular@1.2.0/angular']
 		'ks:ang-app/resources/ng-sanitize': ['angular@1.2.0/angular']
-		'cdnjs:jqueryui/1.10.3/jquery-ui.min': ['jquery@2.0']

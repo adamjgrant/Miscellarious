@@ -29,14 +29,6 @@ jspm.config.urlArgs = '?bust=' + new Date().getTime() if k$.settings.mode == 'de
 
 jspmResources = jspmResources.concat k$settings.apps
 
-###
-# Add Angular Resources
-controllers = []
-controllers.concat './ang-app/controllers/' + ctrl for ctrl in k$.settings.controllers
-console.log controllers
-jspmResources = jspmResources.concat controllers
-###
-
 jspm.import jspmResources, ($, angular, app) ->
 	$(document).ready ->
 		document.body.className += 'loaded'

@@ -22,7 +22,7 @@ exports.locals =
   title: 'Kickstrap'
   title_with_markup: ->
     "<h1>You're running Kickstrap 2</h1>"
-  yourname: '[Edit me in app.coffee]'
+  yourname: 'Adam Kochanowicz'
 
 # If true, shows the compile process and page/asset status in the
 # terminal when watching and compiling files.

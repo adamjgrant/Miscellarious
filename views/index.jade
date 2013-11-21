@@ -11,12 +11,12 @@ block content
 	.container.ks-afterload
 		.row(ng-controller='NotesCtrl')
 			.col.col-sm-6#notes(ng-init="init()", style="position: static;overflow: hidden")
-				h4.text-center Room: {{roomSlug}}
 				.uikit.uikit-book(ng-click="create()")
 				.uikit.uikit-note(
 					ng-repeat="note in (notes | orderBy: 'timestamp':true)"
+					class="{{getColorClass(note.color)}}"
 				)
-					textarea.uikit-note-content(
+					input.uikit-note-content(
 						focus="{{note.id == selectedNote.id}}"
 						ng-model="note.text"
 						ng-click="setSelectedNote(note)"
@@ -28,7 +28,10 @@ block content
 						ng-click="setSelectedNote(note)"
 					) 
 						span(ng-bind-html="format(note.text)")
+				#ads
 			.col.col-sm-6
+				.page-header
+					h3 Room: {{roomSlug}}
 				h4 
 					a(ng-click="toggleInstructions()" href="") Tips and Tricks 
 						span.glyphicon.glyphicon-chevron-down(ng-hide="instructions")
@@ -54,3 +57,21 @@ block content
 						li img:allthethings
 						li img:dontevencare
 						li img:jackiechan
+				h4
+					a(ng-click="toggleRR()" href="") Popular Rooms 
+						span.glyphicon.glyphicon-chevron-down(ng-hide="recentR")
+						span.glyphicon.glyphicon-chevron-up(ng-show="recentR")
+				div(ng-show="recentR", ng-init="recentR=true")
+					ul.list-unstyled.list_monospace
+						li(ng-repeat="room in recentRooms")
+							a(href="#/{{room.name}}") {{room.name}}
+						li
+							a(href="#/stuff") stuff
+						li
+							a(href="#/art") art
+						li
+							a(href="#/obama") obama
+						li
+							a(href="#/apple") apple
+						li
+							a(href="#/war") war

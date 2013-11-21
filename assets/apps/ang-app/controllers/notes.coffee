@@ -1,7 +1,6 @@
 define ['./module', 'jquery'], (controllers, $) ->
 	controllers.controller 'NotesCtrl', ['$scope', 'angularFire', 'ngProgress', '$location', '$sce', ($scope, angularFire, ngProgress, $location, $sce) ->
 		$scope.init = () ->
-			ngProgress.start()
 
 		# CRUD
 		$scope.create 		= () ->
@@ -11,7 +10,7 @@ define ['./module', 'jquery'], (controllers, $) ->
 				posx: 300
 				posy: 300
 				text: ''
-				color: 1
+				color: Math.floor Math.random() * ((5-1) + 1) + 1
 				timestamp: d.getTime()
 			$scope.notes.push note
 			$scope.setSelectedNote note
@@ -32,12 +31,27 @@ define ['./module', 'jquery'], (controllers, $) ->
 		$scope.read()
 
 		$scope.$on '$locationChangeSuccess', () ->
+			ngProgress.start()
 			$scope.roomSlug = ($location.path().substr(1,$location.path().length) || 'home')
+
+
+
 			if (typeof $scope.unbindNotes == 'function')
 				console.log 'Yes, it is a function'
 				$scope.unbindNotes()
 				$scope.notes = []
 				$scope.read()
+
+		$scope.getColorClass = (num) ->
+			col = 'yellow'
+			switch num
+				when 1 then col = 'yellow'
+				when 2 then col = 'green'
+				when 3 then col = 'blue'
+				when 4 then col = 'orange'
+				when 5 then col = 'purple'
+				else col = 'yellow'
+			return 'uikit-note_' + col
 
 		shortcodes = [
 			scode: 'img:troll'
@@ -79,7 +93,7 @@ define ['./module', 'jquery'], (controllers, $) ->
 		$scope.format = (text) ->
 			console.log text
 			text = text.replace sc.scode, sc.replacement for sc in shortcodes
-			text = $sce.trustAsHtml text
+			text = $sce.trustAsHtml String text
 
 
 		$scope.setSelectedNote = (note) ->
@@ -87,5 +101,7 @@ define ['./module', 'jquery'], (controllers, $) ->
 
 		$scope.toggleInstructions = () ->
 			$scope.instructions = !$scope.instructions
+		$scope.toggleRR = () ->
+			$scope.recentR = !$scope.recentR
 
 	]
