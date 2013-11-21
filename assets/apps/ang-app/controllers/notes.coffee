@@ -45,3 +45,5 @@ define ['./module', 'jquery'], (controllers, $) ->
 			.mousedown (e) ->
 				window.noteX = e.clientX
 				window.noteY = e.clientY
+				e.preventDefault()?
+				false
