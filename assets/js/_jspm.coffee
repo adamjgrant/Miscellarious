@@ -9,6 +9,7 @@ jspm.config
 				return name
 	map:
 		'jquery': 			'jquery@2.0'
+		'jqueryui':			'cdnjs:jqueryui/1.10.3/jquery-ui.min'
 		'bootstrap': 		'github:twbs/bootstrap@3.0.2/js/bootstrap'
 		'angular': 			'angular@1.2.0/angular'
 		'angularFire': 		'angularFire@0.3'
@@ -21,3 +22,4 @@ jspm.config
 			exports: 'angular'
 		'ks:ang-app/resources/angular-route': ['angular@1.2.0/angular']
 		'ks:ang-app/resources/ng-progress': ['angular@1.2.0/angular']
+		'cdnjs:jqueryui/1.10.3/jquery-ui.min': ['jquery@2.0']

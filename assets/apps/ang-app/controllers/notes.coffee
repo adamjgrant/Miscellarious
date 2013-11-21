@@ -35,17 +35,13 @@ define ['./module', 'jquery'], (controllers, $) ->
 
 	]
 
-	# DRAG EVENTS
-
-	handleDragStart = (e) ->
-		this.style.opacity = '0'
-	handleDragOver = (e) ->
-		this.style.opacity = '1'
-		console.log e.clientX
-		e.preventDefault() if e.preventDefault
-		e.stopPropagation() if e.stopPropagation
-		# e.dataTransfer.dropEffect = 'move'
-		false
-
-	$('body').on('drag', '.uikit-note', handleDragStart)
-	$('body').on('dragover', '.uikit-note', handleDragOver)
+	$('.container').on 'mousemove', '.movebar', ->
+		$('.uikit-note')
+			.draggable
+				handle: '.movebar'
+				drag: (e) ->
+					window.noteX = e.clientX
+					window.noteY = e.clientY
+			.mousedown (e) ->
+				window.noteX = e.clientX
+				window.noteY = e.clientY
