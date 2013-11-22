@@ -23,7 +23,6 @@ define ['./module', 'jquery'], (controllers, $) ->
 			promise.then (unbind) ->
 				$scope.unbindNotes = unbind
 				ngProgress.complete()
-				$scope.setSelectedNote $scope.notes[0]
 		$scope.update 		= () ->
 		$scope.delete 		= () ->
 
@@ -87,7 +86,8 @@ define ['./module', 'jquery'], (controllers, $) ->
 		$scope.format = (text) ->
 			console.log text
 			text = text.replace sc.scode, sc.replacement for sc in shortcodes
-			text = $sce.trustAsHtml String text
+			# text = $sce.trustAsHtml String text
+			text
 
 		$scope.setSelectedNote = (note) ->
 			$scope.selectedNote = note

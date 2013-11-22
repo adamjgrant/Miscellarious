@@ -9,7 +9,7 @@ jspm.config
 				return name
 	map:
 		'bootstrap': 		'github:twbs/bootstrap@3.0.2/js/bootstrap'
-		'angular': 			'angular@1.2.0/angular'
+		'angular': 			'ks:angular/main'
 		'angularFire': 		'angularFire@0.3'
 		'ang-app': 			'ks:ang-app'
 		'angular-route':	'ks:ang-app/resources/angular-route'
@@ -17,7 +17,7 @@ jspm.config
 		'ng-progress':		'ks:ang-app/resources/ng-progress'
 		'fontawesome': 		'cdnjs:font-awesome/4.0.1/css/font-awesome.min.css!'
 	shim: 
-		'cdnjs:angular.js/1.2.0/angular': exports: 'angular'
-		'ks:ang-app/resources/angular-route': ['angular@1.2.0/angular']
-		'ks:ang-app/resources/ng-progress': ['angular@1.2.0/angular']
-		'ks:ang-app/resources/ng-sanitize': ['angular@1.2.0/angular']
+		'ks:angular/main': exports: 'angular'
+		'ks:ang-app/resources/angular-route': ['ks:angular/main']
+		'ks:ang-app/resources/ng-progress': ['ks:angular/main']
+		'ks:ang-app/resources/ng-sanitize': ['ks:angular/main']

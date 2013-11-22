@@ -31,12 +31,13 @@ block content
 				#ads
 			.col.col-sm-6
 				.page-header
+					h1 Miscellarious.com
 					h3 Room: {{roomSlug}}
 				h4 
-					a(ng-click="toggleInstructions()" href="") Tips and Tricks 
+					a(ng-click="toggleInstructions()") Tips and Tricks 
 						span.glyphicon.glyphicon-chevron-down(ng-hide="instructions")
 						span.glyphicon.glyphicon-chevron-up(ng-show="instructions")
-				div(ng-show="instructions", ng-init="instructions=true")
+				div(ng-show="instructions", ng-init="instructions=false")
 					.page-header
 						h5 How to 
 					p To create a note, click the book.
@@ -58,7 +59,7 @@ block content
 						li img:dontevencare
 						li img:jackiechan
 				h4
-					a(ng-click="toggleRR()" href="") Popular Rooms 
+					a(ng-click="toggleRR()") Popular Rooms 
 						span.glyphicon.glyphicon-chevron-down(ng-hide="recentR")
 						span.glyphicon.glyphicon-chevron-up(ng-show="recentR")
 				div(ng-show="recentR", ng-init="recentR=true")
